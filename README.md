@@ -37,14 +37,23 @@ A full-stack healthcare management system that enables secure storage, retrieval
 ```bash
 git clone https://github.com/divyaindukuri22/Major-project-ehr.git
 cd Major-project-ehr
+```
 
-
+```bash
 pip install -r requirements.txt
+```
 
+### 3. Run Migrations & Start the Server
+
+```bash
 python manage.py runserver
+```
 
 ### 4. Access the Application
 
-Open your browser and go to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+Open your browser and go to:
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+
 
 

@@ -1,0 +1,114 @@
+{% extends "home.html" %}
+{% block title %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+           
+
+            justify-content: center;
+            align-items: center;
+            /* background-color: #f3f4f6; */
+            background-image: url('/static/img/d4.jpg'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .form-container {
+           
+            width: 400px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #357ab8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        {% if messages %}
+        {% for message in messages %}
+        <center><p class="alert alert-success">{{ message }}</p></center>
+        {% endfor %}
+        {% endif %}
+        <h2>Feedback Form</h2>
+        <form action="{% url 'feedback' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <!-- Patient Name -->
+             {% for i in data %}
+            <div class="form-group">
+                <label for="patient-name">Patient Name</label>
+                <input type="text" id="patient-name" name="patient_name" value="{{i.firstname}} {{i.lastname}}" placeholder="Enter patient name" required readonly>
+            </div>
+
+       
+
+            <!-- File Upload -->
+            <div class="form-group">
+                <label for="file-upload">Feedback </label>
+                <textarea name="feedback" id="feedback" rows="5" maxlength="150" required></textarea>
+            </div>
+            {% endfor %}
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+</body>
+{% endblock %}

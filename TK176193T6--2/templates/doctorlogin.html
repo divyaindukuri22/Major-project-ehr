@@ -1,0 +1,137 @@
+{% extends "index.html" %}
+{% block title %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Login</title>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            background-image: url('/static/img/d4.jpg'); /* Background image for the body */
+            background-size: cover; /* Ensure the image covers the entire viewport */
+            background-position: center; /* Center the image */
+            height: 120vh; /* Full height of the viewport */
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
+        }
+
+        .containr {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 100px 190px;
+        }
+
+        .image-side {
+            flex: 1;
+            background-image: url('/static/img/d2.jpg'); /* Background image for the left side */
+            background-size: cover; /* Ensure the image covers the left side */
+            background-position: center; /* Center the image */
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .form-side {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            animation: slideInRight 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin: 10px 0; /* Margin for spacing */
+        }
+
+        .form-group label {
+            margin-bottom: 5px; /* Space between label and input */
+            font-weight: bold; /* Make the label bold */
+        }
+
+        input {
+            width: 100%; /* Full width of the input */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensure padding and border are included in width */
+        }
+
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="containr">
+
+        <div class="form-side">
+            {% if messages %}
+        {% for message in messages %}
+       <center> <p class="alert alert-success">{{message}}</p></center>
+        {% endfor %}
+        {% endif %}
+            <h2>Doctor Login</h2>
+            <form action="{% url 'doctorlogin' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password" required pattern=".{8}" 
+                    title="Password must be exactly 8 digits." minlength="8" maxlength="8">
+                                </div>
+                <center><button type="submit">Login</button></center>
+            </form>
+            <center><a href="{% url 'doctorregister' %}" style="color: #0b3abb;"> Don't have an account? Register</a></center>
+        </div>
+        <div class="image-side"></div>
+    </div>
+</body>
+
+{% endblock %}

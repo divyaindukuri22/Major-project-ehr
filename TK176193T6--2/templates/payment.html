@@ -1,0 +1,191 @@
+{% extends "home.html" %}
+{% block title %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+        }
+        .containr {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top:50px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #4f46e5;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="file"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input[type="tel"]{
+            padding: 30px;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: #4f46e5;
+            outline: none;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        .submit-btn {
+            background-color: #4f46e5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #4338ca;
+        }
+        nav {
+            background: #333; /* Example background color */
+            padding: 15px;
+        }
+        nav a {
+            color: #fff; /* Change link color */
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #007BFF; /* Color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="containr">
+        <h1>Payment Details</h1>
+            <div class="grid">
+                {% for i in data %}
+                <!-- First Name -->
+                <div>
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" id="firstName" value="{{i.firstname}}" required readonly>
+                </div>
+
+                <!-- Last Name -->
+                <div>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" value="{{i.lastname}}" required readonly>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" value="{{i.email}}" required readonly>
+                </div>
+
+                <!-- Age -->
+                <div>
+                    <label for="age">Age</label>
+                    <input type="number" name="age" id="age"  value="{{age}}" readonly placeholder="Enter Your Age" min="1" max="100" required >
+                </div>
+
+                <!-- Gender -->
+                <div class="full-width">
+                    <label for="lastName">Gender</label>
+                    <input type="text" name="lastName" id="lastName" value="{{gender}}" required readonly>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <label for="phone">Contact Number</label>
+                    <input type="tel" name="phone" placeholder="Contact Number" required value="{{i.phone}}" 
+                    pattern="^[6789][0-9]{9}$" 
+                    title="Contact Number must be 10 digits long and start with 6, 7, 8, or 9." readonly> 
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" rows="3" required readonly> {{i.address}}</textarea>
+                </div>
+
+                <!-- Doctor Information -->
+                {% for i in doctor %}
+                <div>
+                    <label for="Doctor">Doctor</label>
+                    <input type="text" name="Doctor" id="Doctor" value="{{i.firstname}} {{i.lastname}}" readonly>
+                </div>
+                <div>
+                    <label for="Designation">Designation</label>
+                    <input type="text" name="Designation" id="Designation" value="{{i.designation}}" readonly>
+                </div>
+                {% endfor %}
+                {% endfor %}
+
+                
+                <!-- Card Details -->
+                <div class="full-width">
+                    <h2>Card Details</h2>
+                </div>
+                {% for i in payment %}
+
+                <!-- Cardholder Name -->
+                <div class="full-width">
+                    <label for="cardholder">Cardholder Name</label>
+                    <input type="text" name="cardholder" id="cardholder" value="{{i.username}}" readonly placeholder="Enter Cardholder Name" required>
+                </div>
+                <!-- Card Number -->
+                <div class="full-width">
+                    <label for="card-number">Card Number</label>
+                    <input type="tel" name="cardnumber" id="card-number" value="{{i.cardnumber}}" readonly  placeholder="1234 5678 9012 3456" required>
+                </div>
+
+              
+                    
+                    <div class="full-width">
+                        <label for="Amount">Amount</label>
+                        <input type="number" name="amount" id="Amount" value="{{i.amount}}" readonly placeholder="Enter Amount" min='1' required>
+                    </div>
+
+                    <div class="full-width">
+                        <label for="Amount">PAyment Status</label>
+                        <input type="text" name="amount" id="Amount" value="{{'Paid'}}" readonly placeholder="Enter Amount" min='1' required>
+                    </div>
+                    
+                {% endfor %}
+            </div>
+
+            <!-- Submit Button -->
+            
+    </div>
+</body>
+{% endblock %}

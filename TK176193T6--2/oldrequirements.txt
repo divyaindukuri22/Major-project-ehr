@@ -1,0 +1,26 @@
+# This file may be used to create an environment using:
+# python====3.10.14
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+efficientnet-pytorch==0.7.1
+monai==1.4.0
+munch==4.0.0
+nibabel==5.3.1
+# openssl==3.0.15
+pandas==2.2.3
+pretrainedmodels==0.7.4
+# python==3.10.14
+scikit-learn==1.5.2
+segmentation-models-pytorch==0.3.4
+setuptools==75.1.0
+# sqlite==3.45.3
+timm==0.9.7
+# tk==8.6.14
+torch-geometric==2.6.1
+torchsummary==1.5.1
+# tzdata==2024b
+# vc==14.40
+# vs2015_runtime==14.40.33807
+# wheel==0.44.0
+# xz==5.4.6
+# zlib==1.2.13
